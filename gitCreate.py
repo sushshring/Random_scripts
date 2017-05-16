@@ -1,16 +1,22 @@
-import sys, requests
+import sys, requests, getpass, argparse
 
-args = sys.argv
+parser = argparse.ArgumentParser(description="This script will initialize a new repository on Github.")
+parser.add_argument("-u", '--username', metavar='<Username>', type=str, help='Input your username for github here')
+parser.add_argument("-d", '--description', metavar='<description>', type=str, help='The description for the new repository')
+parser.add_argument("-n", '--name', metavar='<name>', type=str, help='The name for the new repository')
 
-if len(args) < 5:
-    sys.exit("Arguments invalid")
+
+
+args = parser.parse_args()
+
 
 headers = {
     'Content-Type': 'application/json',
 }
 
-data = '{"name": "'+args[1]+ '", "description":"'+args[2]+'","public" :"true", "has_issues":"true", "has_wiki":"false"}'
+data = '{"name": "'+args.name+ '", "description":"'+args.description+'","public" :"true", "has_issues":"true", "has_wiki":"false"}'
 
-r = requests.post('https://api.github.com/user/repos', headers=headers, data=data, auth=(args[3], args[4]))
+password = getpass.getpass("Enter password for GitHub username: " + args.username)
+r = requests.post('https://api.github.com/user/repos', headers=headers, data=data, auth=(args.username, password))
 
 print r.json()  
