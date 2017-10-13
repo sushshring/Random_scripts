@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import sys, requests, getpass, argparse
 
 parser = argparse.ArgumentParser(description="This script will initialize a new repository on Github.")
