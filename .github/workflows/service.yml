@@ -28,7 +28,7 @@ jobs:
                 sha: context.sha,
                 state: failure
               })
-            ) else if (context.comment.body.contains("[I AM A BOT] - Buddy build succeeded.")) {
+            } else if (context.comment.body.contains("[I AM A BOT] - Buddy build succeeded.")) {
                github.createCommitStatus({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
