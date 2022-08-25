@@ -23,8 +23,8 @@ jobs:
           script: |
             const { number } = context.payload.issue;
             const pr = await github.pulls.get({
-              context.repo.owner,
-              context.repo.repo,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               pull_number: number,
             });
             console.log(pr);
