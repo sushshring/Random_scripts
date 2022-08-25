@@ -17,7 +17,8 @@ jobs:
     if: ${{ github.event.issue.pull_request }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: "Debug"
+      - name: Dump GitHub context
+        id: github_context_step
         run: echo '${{ toJSON(github) }}'
       - name: "Check comment"
         uses: actions/github-script@v4
