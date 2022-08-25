@@ -14,12 +14,9 @@ jobs:
   check_build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event.issue.pull_request && github.actor == 'sushshring' }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
       - name: "Check comment"
         uses: actions/github-script@v4
         with:
