@@ -18,7 +18,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: "Debug"
-        run: echo ${{ github.event.actor }}
+        run: echo '${{ toJSON(github) }}'
       - name: "Check comment"
         uses: actions/github-script@v4
         with:
