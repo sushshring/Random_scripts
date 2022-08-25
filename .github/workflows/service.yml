@@ -14,9 +14,11 @@ jobs:
   check_build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request && github.event.actor.username == 'sushshring' }}
+    if: ${{ github.event.issue.pull_request }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: "Debug"
+        run: echo ${{ github.event.actor }}
       - name: "Check comment"
         uses: actions/github-script@v4
         with:
