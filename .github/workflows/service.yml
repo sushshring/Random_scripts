@@ -22,6 +22,10 @@ jobs:
         with:
           script: |
             console.log(github);
+            github.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
             if (context.payload.comment.body.includes("[I AM A BOT] - Buddy build failed.")) {
               github.repos.createCommitStatus({
                 owner: context.repo.owner,
