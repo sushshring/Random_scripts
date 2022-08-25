@@ -21,7 +21,6 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            console.log(github);
             console.log(context.payload.issue.pull_request);
             if (context.payload.comment.body.includes("[I AM A BOT] - Buddy build failed.")) {
               github.repos.createCommitStatus({
