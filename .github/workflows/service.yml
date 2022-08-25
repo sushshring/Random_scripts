@@ -21,10 +21,10 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const { owner, repo, number } = context.payload.issue;
+            const { number } = context.payload.issue;
             const pr = await github.pulls.get({
-              owner,
-              repo,
+              context.repo.owner,
+              context.repo.repo,
               pull_number: number,
             });
             console.log(pr);
