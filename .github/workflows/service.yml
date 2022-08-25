@@ -21,12 +21,18 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            console.log(context.payload.issue.pull_request);
+            const { owner, repo, number } = context.payload.issue;
+            const pr = await github.pulls.get({
+              owner,
+              repo,
+              pull_number: number,
+            });
+            console.log(pr);
             if (context.payload.comment.body.includes("[I AM A BOT] - Buddy build failed.")) {
               github.repos.createCommitStatus({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                sha: context.sha,
+                sha: pr.data.head.sha,
                 state: "failure",
                 description: "Build Check status",
                 context: "abcd"
@@ -35,7 +41,7 @@ jobs:
                github.repos.createCommitStatus({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  sha: context.sha,
+                  sha: pr.data.head.sha,
                   state: success
                 })
             }
