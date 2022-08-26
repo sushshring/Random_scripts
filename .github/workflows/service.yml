@@ -34,14 +34,16 @@ jobs:
                 repo: context.repo.repo,
                 sha: pr.data.head.sha,
                 state: "failure",
-                description: "Build Check status",
-                context: "abcd"
+                description: Buddy Build status",
+                context: "ADO Build"
               })
             } else if (context.payload.comment.body.includes("[I AM A BOT] - Buddy build succeeded.")) {
                github.repos.createCommitStatus({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   sha: pr.data.head.sha,
-                  state: success
+                  state: "success",
+                  description: "Buddy Build status",
+                  context: "ADO Build"
                 })
             }
