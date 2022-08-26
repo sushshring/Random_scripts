@@ -34,7 +34,7 @@ jobs:
                 repo: context.repo.repo,
                 sha: pr.data.head.sha,
                 state: "failure",
-                description: Buddy Build status",
+                description: "Buddy Build status",
                 context: "ADO Build"
               })
             } else if (context.payload.comment.body.includes("[I AM A BOT] - Buddy build succeeded.")) {
